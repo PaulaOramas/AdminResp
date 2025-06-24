@@ -71,96 +71,139 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="card card-form shadow">
-  <h2 class="text-center mb-4 text-dorado fw-bold">
-    <i class="bi bi-plus-circle-fill"></i> Crear Nuevo Producto
-  </h2>
+<div class="container mt-5">
+  <div class="card card-form shadow">
+    <h2 class="text-center mb-4 text-dorado fw-bold">
+      <i class="bi bi-plus-circle-fill"></i> Crear Nuevo Producto
+    </h2>
 
-  <form on:submit|preventDefault={crearProducto} autocomplete="off">
-    <div class="mb-3">
-      <label for="ProdNombre" class="form-label">Nombre del Producto</label>
-      <input id="ProdNombre" class="form-control" bind:value={nombre} required />
-    </div>
+    <form on:submit|preventDefault={crearProducto} autocomplete="off">
+      <div class="mb-3">
+        <label for="ProdNombre" class="form-label">Nombre del Producto</label>
+        <input id="ProdNombre" class="form-control gold-input" bind:value={nombre} required />
+      </div>
 
-    <div class="mb-3">
-      <label for="ProdDescripcion" class="form-label">Descripción</label>
-      <textarea id="ProdDescripcion" class="form-control" bind:value={descripcion} required></textarea>
-    </div>
+      <div class="mb-3">
+        <label for="ProdDescripcion" class="form-label">Descripción</label>
+        <textarea id="ProdDescripcion" class="form-control gold-input" bind:value={descripcion} required></textarea>
+      </div>
 
-    <div class="mb-3">
-      <label for="ProdPrecio" class="form-label">Precio ($)</label>
-      <input id="ProdPrecio" type="number" class="form-control" bind:value={precio} min="0" step="0.01" required />
-    </div>
+      <div class="mb-3">
+        <label for="ProdPrecio" class="form-label">Precio ($)</label>
+        <input id="ProdPrecio" type="number" class="form-control gold-input" bind:value={precio} min="0" step="0.01" required />
+      </div>
 
-    <div class="mb-3">
-      <label for="ProdStock" class="form-label">Stock</label>
-      <input id="ProdStock" type="number" class="form-control" bind:value={stock} min="0" required />
-    </div>
+      <div class="mb-3">
+        <label for="ProdStock" class="form-label">Stock</label>
+        <input id="ProdStock" type="number" class="form-control gold-input" bind:value={stock} min="0" required />
+      </div>
 
-    <div class="mb-3">
-      <label for="categoriaSelect" class="form-label">Categoría</label>
-      <select id="categoriaSelect" class="form-select" bind:value={categoria} required>
-        <option value="">Seleccione una categoría</option>
-        {#each categorias as cat}
-          <option value={cat.CAT_ID}>{cat.CAT_NOMBRE}</option>
-        {/each}
-      </select>
-    </div>
+      <div class="mb-3">
+        <label for="categoriaSelect" class="form-label">Categoría</label>
+        <select id="categoriaSelect" class="form-select gold-input" bind:value={categoria} required>
+          <option value="">Seleccione una categoría</option>
+          {#each categorias as cat}
+            <option value={cat.CAT_ID}>{cat.CAT_NOMBRE}</option>
+          {/each}
+        </select>
+      </div>
 
-    <div class="mb-3">
-      <label for="ProdImg" class="form-label">Imagen URL</label>
-      <input id="ProdImg" class="form-control" bind:value={img} required />
-    </div>
+      <div class="mb-4">
+        <label for="ProdImg" class="form-label">Imagen del Producto (URL)</label>
+        <input id="ProdImg" class="form-control gold-input" bind:value={img} required />
+      </div>
 
-    <div class="text-center">
-      <button type="submit" class="btn btn-dorado">
-        <i class="bi bi-plus-circle"></i> Crear Producto
-      </button>
-    </div>
-  </form>
-
-  <div class="mt-4">
-    <a href="/app/productos" class="btn btn-secondary">
-      <i class="bi bi-arrow-left"></i> Volver a la lista de productos
-    </a>
+      <div class="d-flex justify-content-between gap-2">
+        <button type="submit" class="btn btn-warning fw-bold flex-fill">
+          <i class="bi bi-plus-circle"></i> Guardar Producto
+        </button>
+        <a href="/app/productos" class="btn btn-secondary fw-bold flex-fill">
+          <i class="bi bi-arrow-left-circle"></i> Cancelar
+        </a>
+      </div>
+    </form>
   </div>
 </div>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+  }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
+  .container {
+    background: transparent !important;
+  }
   .card-form {
     max-width: 600px;
     margin: 2rem auto;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     border-radius: 1rem;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--gris-medio);
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.18);
+    color: var(--dorado-claro);
   }
-
   .text-dorado {
-    color: #c59d3b;
+    color: var(--dorado);
   }
-
-  .btn-dorado {
-    background-color: #c59d3b;
-    color: #fff;
-  }
-
-  .btn-dorado:hover {
-    background-color: #b58a2a;
-  }
-
   .form-label {
-    font-weight: 500;
+    color: var(--dorado);
+    font-weight: 600;
   }
-
-  .form-control, .form-select {
+  .gold-input,
+  .form-control,
+  .form-select {
+    border: 2px solid var(--dorado) !important;
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.08rem;
+    box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gold-input:focus,
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--dorado-claro) !important;
+    box-shadow: 0 0 0 0.18rem var(--dorado-claro, #f0db7d55);
+    background-color: #23252b !important;
+    color: #fff !important;
+  }
+  .form-control::placeholder,
+  textarea::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+  .btn-warning {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 2px 8px #f0db7d33;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-warning:hover, .btn-warning:focus {
+    background: #ffe082;
+    color: #23252b;
+  }
+  .btn-secondary {
+    background: #23252b;
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover, .btn-secondary:focus {
+    background: var(--dorado);
+    color: #23252b;
+  }
+  .card-form .btn {
+    min-width: 170px;
     border-radius: 0.5rem;
-    box-shadow: none;
-    border: 1px solid #ced4da;
-  }
-
-  .form-control:focus, .form-select:focus {
-    border-color: #c59d3b;
-    box-shadow: 0 0 0 0.2rem rgba(197, 157, 59, 0.25);
   }
 </style>
