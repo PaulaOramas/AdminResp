@@ -75,16 +75,20 @@
       <div class="mb-4">
         <label for="prodImagen" class="form-label">Imagen</label>
         <div class="text-center">
-          {#if producto.PROD_IMAGEN}
-            <img id="prodImagen" src={producto.PROD_IMAGEN} alt="Imagen del producto" class="img-fluid rounded" />
+          {#if producto.PROD_IMG}
+            <img id="prodImagen" src={producto.PROD_IMG} alt="Imagen del producto" class="img-fluid rounded border shadow-sm detalle-img" />
           {:else}
             <div class="alert alert-warning">No hay imagen disponible</div>
           {/if}
         </div>
       </div>
+      <div class="mb-3">
+        <label for="prodCategoria" class="form-label">Categoría</label>
+        <input id="prodCategoria" class="form-control" value={producto.CAT_ID || ''} disabled />
+      </div>
       <div class="text-center">
-        <a href="/app/productos" class="btn btn-primary">
-          <i class="bi bi-arrow-left"></i> Volver a la lista
+        <a href="/app/productos" class="btn btn-secondary fw-bold">
+          <i class="bi bi-arrow-left-circle"></i> Volver a la lista
         </a>
       </div>
     {/if}
@@ -92,44 +96,63 @@
 </div>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+  }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
   .text-dorado {
-    color: #f0db7d;
+    color: var(--dorado);
   }
-
   .detalle-card {
-    background-color: #23252b;
-    color: #f8f9fa;
-    padding: 1.2rem 1.5rem;         /* Menos padding */
+    max-width: 700px;
+    margin: auto;
+    background-color: var(--gris-medio);
+    padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.15);
-    max-width: 480px;               /* Más angosto */
-    margin: 0 auto;                 /* Centrado horizontal */
+    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
+    color: var(--dorado-claro);
   }
-
-  .detalle-card .form-label {
+  label.form-label {
+    color: var(--dorado-claro);
     font-weight: 600;
-    color: #f0db7d;
   }
-
-  .detalle-card input,
-  .detalle-card textarea {
-    background-color: #23252b;
-    color: #f8f9fa;
-    border: 1.5px solid #f0db7d;
-    font-size: 1rem;
-    padding: 0.4rem 0.8rem;
+  input.form-control,
+  textarea.form-control {
+    background-color: var(--gris-oscuro);
+    color: var(--dorado-claro);
+    border: 1.5px solid var(--dorado);
+    border-radius: 0.4rem;
+    transition: border-color 0.3s ease;
   }
-
-  .detalle-card input:disabled,
-  .detalle-card textarea:disabled {
-    background-color: #23252b;
-    color: #f8f9fa;
+  input.form-control:disabled,
+  textarea.form-control:disabled {
+    background-color: var(--gris-medio);
+    color: var(--dorado-claro);
     opacity: 1;
   }
-
-  .detalle-card .btn {
-    min-width: 140px;
-    font-size: 1rem;
-    padding: 0.4rem 1.2rem;
+  .detalle-img {
+    max-height: 300px;
+    border: 2px solid var(--dorado);
+    background: #fff;
+    margin: 0 auto;
+    display: block;
+    box-shadow: 0 2px 8px #f0db7d33;
+  }
+  .btn-secondary {
+    background: var(--gris-oscuro);
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover, .btn-secondary:focus {
+    background: var(--dorado);
+    color: #23252b;
   }
 </style>
