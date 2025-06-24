@@ -68,6 +68,13 @@
     <p class="text-light">Administra las facturas emitidas por la tienda</p>
   </div>
 
+  <!-- Botón Volver fuera del card -->
+  <div class="d-flex justify-content-end mb-3">
+    <a href="/app/dashboard" class="btn btn-outline-light fw-bold">
+      <i class="bi bi-arrow-left-circle-fill"></i> Volver al Panel
+    </a>
+  </div>
+
   <div class="mb-3 d-flex gap-3 flex-wrap align-items-center">
     <button type="button" class="btn btn-warning fw-bold" disabled
       style="cursor: default; user-select: none; min-width: 130px;">
@@ -83,12 +90,6 @@
   </div>
 
   <div class="card shadow-lg p-4 rounded-4 bg-secondary text-light card-lista">
-    <div class="d-flex justify-content-end mb-3">
-      <a href="/app/dashboard" class="btn btn-outline-light fw-bold">
-        <i class="bi bi-arrow-left-circle-fill"></i> Volver al Panel
-      </a>
-    </div>
-
     {#if cargando}
       <div class="alert alert-info text-center">Cargando facturas...</div>
     {:else if error}
@@ -127,22 +128,24 @@
                 <td>${factura.FAC_TOTAL?.toFixed(2)}</td>
                 <td>
                   {#if factura.FAC_ESTADO === "PEN"}
-                    <span class="badge bg-warning text-dark">Pendiente</span>
+                    <span class="badge badge-estado badge-pendiente">Pendiente</span>
                   {:else if factura.FAC_ESTADO === "ANU"}
-                    <span class="badge bg-danger">Anulada</span>
+                    <span class="badge badge-estado badge-anulada">Anulada</span>
                   {:else}
-                    <span class="badge bg-success">Pagada</span>
+                    <span class="badge badge-estado badge-pagada">Pagada</span>
                   {/if}
                 </td>
                 <td>
                   <div class="acciones-container">
-                    <button class="btn btn-info btn-sm" aria-label="Ver detalle" on:click={() => verDetalle(factura.FAC_NUMERO)}>
+                    <button class="btn btn-ver btn-sm" aria-label="Ver detalle" on:click={() => verDetalle(factura.FAC_NUMERO)}>
                       <i class="bi bi-eye-fill"></i> Ver
                     </button>
                     {#if factura.FAC_ESTADO === "PEN"}
-                      <button class="btn btn-danger btn-sm" aria-label="Anular factura" on:click={() => anularFactura(factura.FAC_NUMERO)}>
+                      <button class="btn btn-anular btn-sm" aria-label="Anular factura" on:click={() => anularFactura(factura.FAC_NUMERO)}>
                         <i class="bi bi-x-circle-fill"></i> Anular
                       </button>
+                    {:else}
+                      <span class="btn-anular-placeholder"></span>
                     {/if}
                   </div>
                 </td>
@@ -156,16 +159,104 @@
 </main>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+    --verde: #27ae60;
+    --rojo: #c0392b;
+  }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
   .card-lista {
-    background-color: #2c2f36;
-    color: #f0db7d;
+    background-color: var(--gris-medio);
+    color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 15px #d4af37cc;
   }
-  .acciones-container .btn {
-    margin-right: 0.3rem;
+  .table-dark,
+  .table-dark th, .table-dark td {
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important;
+    border-color: var(--dorado) !important;
+    border-width: 2px !important;
+    vertical-align: middle;
   }
-  .acciones-container .btn:last-child {
-    margin-right: 0;
+  .table-light {
+    background-color: var(--dorado-claro) !important;
+    color: #23252b !important;
+  }
+  /* Badges personalizados */
+  .badge-estado {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5em 1em;
+    border-radius: 0.7em;
+    letter-spacing: 0.5px;
+  }
+  .badge-pendiente {
+    background: var(--dorado);
+    color: #23252b;
+  }
+  .badge-anulada {
+    background: var(--rojo);
+    color: #fff;
+  }
+  .badge-pagada {
+    background: var(--verde);
+    color: #fff;
+  }
+  .acciones-container {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-ver {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 600;
+    border: none;
+    min-width: 90px;
+    border-radius: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-ver:hover, .btn-ver:focus {
+    background: var(--dorado-claro);
+    color: #23252b;
+  }
+  .btn-anular {
+    background: var(--rojo);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    min-width: 90px;
+    border-radius: 0.5rem;
+    transition: background 0.2s, color 0.2s;
+    height: 32px;
+  }
+  .btn-anular:hover, .btn-anular:focus {
+    background: #e74c3c;
+    color: #fff;
+  }
+  .btn-anular-placeholder {
+    display: inline-block;
+    min-width: 90px;
+    height: 32px;
+    /* igual que .btn-anular */
+  }
+  .btn-outline-light {
+    border: 2px solid var(--dorado) !important;
+    color: var(--dorado) !important;
+    background: transparent !important;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline-light:hover, .btn-outline-light:focus {
+    background: var(--dorado) !important;
+    color: #23252b !important;
   }
 </style>
