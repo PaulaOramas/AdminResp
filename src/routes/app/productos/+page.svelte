@@ -88,16 +88,36 @@
     </button>
   </div>
 
-  <div class="mb-3 d-flex gap-3 flex-wrap">
-    <!-- filtros aquí -->
+  <!-- Filtros y botón Volver al Panel alineados en una sola fila -->
+  <div class="mb-3 d-flex gap-3 flex-wrap align-items-center justify-content-between">
+    <div class="d-flex gap-3 flex-wrap align-items-center w-100">
+      <!-- Filtro por categoría -->
+      <select
+        class="form-select gold-filter filtro-input"
+        bind:value={filtroCategoria}
+        style="max-width:200px"
+      >
+        <option value="">Todas las categorías</option>
+        {#each categorias as cat}
+          <option value={cat.CAT_NOMBRE}>{cat.CAT_NOMBRE}</option>
+        {/each}
+      </select>
+      <!-- Filtro por nombre -->
+      <input
+        type="text"
+        class="form-control gold-filter filtro-input"
+        placeholder="Buscar por nombre"
+        bind:value={busquedaNombre}
+        style="max-width:250px"
+      />
+      <!-- Botón Volver al Panel alineado a la derecha -->
+      <a href="/app/dashboard" class="btn btn-outline-light fw-bold ms-auto">
+        <i class="bi bi-arrow-right-circle-fill"></i> Volver al Panel
+      </a>
+    </div>
   </div>
 
   <div class="card shadow-lg p-4 rounded-4 bg-secondary text-light card-lista">
-    <div class="d-flex justify-content-end mb-3">
-      <a href="/app/dashboard" class="btn btn-outline-light fw-bold">
-        <i class="bi bi-arrow-left-circle-fill"></i> Volver al Panel
-      </a>
-    </div>
     <!-- Aquí tu tabla de productos -->
     {#if cargando}
       <div class="alert alert-info text-center m-0">Cargando productos...</div>
@@ -124,9 +144,9 @@
                 <td class="text-start">{prod.PROD_NOMBRE}</td>
                 <td>${parseFloat(prod.PROD_PRECIO).toFixed(2)}</td>
                 <td>{prod.PROD_STOCK}</td>
-                <td class="btn-icon-group">
+                <td class="btn-icon-group d-flex gap-1 justify-content-center">
                   <button
-                    class="btn btn-sm btn-warning me-1"
+                    class="btn btn-sm btn-warning"
                     title="Editar"
                     aria-label="Editar producto"
                     on:click={() => editarProducto(prod.PROD_ID)}
@@ -152,6 +172,9 @@
 </main>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+  }
   :global(body) {
     background-color: #23252b !important;
     color: #f8f9fa;
@@ -180,6 +203,15 @@
     color: #f0db7d !important;
     border-bottom: 2px solid #f0db7d;
   }
+  .table-bordered th,
+  .table-bordered td {
+    border-color: var(--dorado) !important;
+    border-width: 2px !important;
+  }
+  .btn-icon-group {
+    flex-wrap: nowrap !important;
+    gap: 0.5rem;
+  }
   .btn-icon-group .btn {
     min-width: 36px;
     min-height: 36px;
@@ -200,5 +232,27 @@
   }
   .fw-bold {
     font-weight: 700 !important;
+  }
+
+  /* Filtros dorados */
+  .gold-filter,
+  .gold-filter:focus {
+    border: 2px solid #f0db7d !important;
+    box-shadow: 0 0 0 0.15rem #f0db7d55 !important;
+    background-color: #23252b !important;
+    color: #f8f9fa !important;
+  }
+  .gold-filter::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+
+  .filtro-input {
+    height: 42px;
+    font-size: 1rem;
+    border-radius: 0.5rem !important;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-width: 180px;
   }
 </style>
