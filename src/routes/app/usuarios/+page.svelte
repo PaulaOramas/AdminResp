@@ -78,8 +78,8 @@
 
     <!-- Filtros -->
     <div class="mb-3 d-flex gap-3 flex-wrap">
-      <input type="text" bind:value={filtroNombre} class="form-control w-auto" placeholder="Filtrar por nombre" aria-label="Filtrar por nombre" />
-      <input type="text" bind:value={filtroCI} class="form-control w-auto" placeholder="Filtrar por CI/RUC" aria-label="Filtrar por CI/RUC" />
+      <input type="text" bind:value={filtroNombre} class="form-control gold-input w-auto" placeholder="Filtrar por nombre" aria-label="Filtrar por nombre" />
+      <input type="text" bind:value={filtroCI} class="form-control gold-input w-auto" placeholder="Filtrar por CI/RUC" aria-label="Filtrar por CI/RUC" />
     </div>
 
     <div id="usuariosTableContainer">
@@ -145,16 +145,104 @@
 </main>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+  }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
   .card-usuarios {
-    background-color: #2c2f36;
-    color: #f0db7d;
-    border-radius: 10px;
+    background-color: var(--gris-medio);
+    color: #fff; /* Letras blancas */
+    border-radius: 1rem;
     box-shadow: 0 0 15px #d4af37cc;
+    padding: 2rem;
+  }
+  .text-warning, .text-dorado {
+    color: var(--dorado) !important;
+  }
+  .gold-input,
+  .form-control,
+  .form-select {
+    border: 2px solid var(--dorado) !important;
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important; /* Letras blancas en inputs */
+    border-radius: 0.5rem !important;
+    font-size: 1.08rem;
+    box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gold-input:focus,
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--dorado-claro) !important;
+    box-shadow: 0 0 0 0.18rem var(--dorado-claro, #f0db7d55);
+    background-color: #23252b !important;
+    color: #fff !important;
+  }
+  .form-control::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+  .btn-warning {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 2px 8px #f0db7d33;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-warning:hover, .btn-warning:focus {
+    background: #ffe082;
+    color: #23252b;
+  }
+  .btn-secondary {
+    background: #23252b;
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover, .btn-secondary:focus {
+    background: var(--dorado);
+    color: #23252b;
+  }
+  .btn-outline-light {
+    border: 2px solid var(--dorado) !important;
+    color: var(--dorado) !important;
+    background: transparent !important;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline-light:hover, .btn-outline-light:focus {
+    background: var(--dorado) !important;
+    color: #23252b !important;
   }
   .btn-icon-group .btn {
     margin-right: 0.3rem;
   }
   .btn-icon-group .btn:last-child {
     margin-right: 0;
+  }
+  .table-bordered th,
+  .table-bordered td {
+    border-color: var(--dorado) !important;
+    border-width: 2px !important;
+  }
+  .table-dark {
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important; /* Letras blancas en tabla */
+  }
+  .table-dark th, .table-dark td {
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important; /* Letras blancas en tabla */
+  }
+  .table-light {
+    background-color: var(--dorado-claro) !important;
+    color: #23252b !important;
   }
 </style>
