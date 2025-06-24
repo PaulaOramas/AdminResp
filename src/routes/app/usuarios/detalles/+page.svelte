@@ -53,67 +53,67 @@
 
 <div class="container mt-5">
   <div class="text-center mb-4">
-    <h1 class="fw-bold text-warning">
+    <h1 class="fw-bold text-dorado">
       <i class="bi bi-person-vcard-fill"></i> Detalle de Usuario
     </h1>
-    <p class="text-warning">Consulta los datos registrados de un cliente</p>
+    <p class="text-dorado">Consulta los datos registrados de un cliente</p>
   </div>
 
-  <div class="card shadow p-4 rounded dark-container mx-auto" style="max-width:700px;">
+  <div class="card card-form dark-container shadow mx-auto">
     {#if cargando}
       <div class="alert alert-info text-center">Cargando...</div>
     {:else if error}
       <div class="alert alert-danger text-center">{error}</div>
     {:else if usuario}
       <div class="mb-3">
-        <label for="usuCiRuc" class="form-label fw-bold text-warning">Cédula / RUC</label>
-        <input id="usuCiRuc" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_CI_RUC || "N/D"} disabled />
+        <label for="usuCiRuc" class="form-label">Cédula / RUC</label>
+        <input id="usuCiRuc" type="text" class="form-control gold-input" value={usuario.USU_CI_RUC || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuNombre" class="form-label fw-bold text-warning">Nombre Completo</label>
-        <input id="usuNombre" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_NOMBRE || "N/D"} disabled />
+        <label for="usuNombre" class="form-label">Nombre Completo</label>
+        <input id="usuNombre" type="text" class="form-control gold-input" value={usuario.USU_NOMBRE || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuEmail" class="form-label fw-bold text-warning">Email</label>
-        <input id="usuEmail" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_EMAIL || "N/D"} disabled />
+        <label for="usuEmail" class="form-label">Email</label>
+        <input id="usuEmail" type="text" class="form-control gold-input" value={usuario.USU_EMAIL || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuTelefono" class="form-label fw-bold text-warning">Teléfono</label>
-        <input id="usuTelefono" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_TELEFONO || "N/D"} disabled />
+        <label for="usuTelefono" class="form-label">Teléfono</label>
+        <input id="usuTelefono" type="text" class="form-control gold-input" value={usuario.USU_TELEFONO || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuDireccion" class="form-label fw-bold text-warning">Dirección</label>
-        <input id="usuDireccion" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_DIRECCION || "N/D"} disabled />
+        <label for="usuDireccion" class="form-label">Dirección</label>
+        <input id="usuDireccion" type="text" class="form-control gold-input" value={usuario.USU_DIRECCION || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuCiudad" class="form-label fw-bold text-warning">Ciudad</label>
-        <input id="usuCiudad" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_CIUDAD || "N/D"} disabled />
+        <label for="usuCiudad" class="form-label">Ciudad</label>
+        <input id="usuCiudad" type="text" class="form-control gold-input" value={usuario.USU_CIUDAD || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuSectorEntrega" class="form-label fw-bold text-warning">Sector de Entrega</label>
-        <input id="usuSectorEntrega" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_SECTOR_ENTREGA || "N/D"} disabled />
+        <label for="usuSectorEntrega" class="form-label">Sector de Entrega</label>
+        <input id="usuSectorEntrega" type="text" class="form-control gold-input" value={usuario.USU_SECTOR_ENTREGA || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuGenero" class="form-label fw-bold text-warning">Género</label>
-        <input id="usuGenero" type="text" class="form-control bg-dark text-light border-warning" value={usuario.USU_GENERO || "N/D"} disabled />
+        <label for="usuGenero" class="form-label">Género</label>
+        <input id="usuGenero" type="text" class="form-control gold-input" value={usuario.USU_GENERO || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuFechaRegistro" class="form-label fw-bold text-warning">Fecha de Registro</label>
-        <input id="usuFechaRegistro" type="text" class="form-control bg-dark text-light border-warning"
+        <label for="usuFechaRegistro" class="form-label">Fecha de Registro</label>
+        <input id="usuFechaRegistro" type="text" class="form-control gold-input"
           value={usuario.USU_FECHA_REGISTRO
             ? (isNaN(new Date(usuario.USU_FECHA_REGISTRO)) ? "Fecha no disponible" : new Date(usuario.USU_FECHA_REGISTRO).toLocaleDateString() + " " + new Date(usuario.USU_FECHA_REGISTRO).toLocaleTimeString())
             : "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuPassword" class="form-label fw-bold text-warning">Contraseña</label>
-        <input id="usuPassword" type="password" class="form-control bg-dark text-light border-warning" value={login?.PASSWORD || "N/D"} disabled />
+        <label for="usuPassword" class="form-label">Contraseña</label>
+        <input id="usuPassword" type="password" class="form-control gold-input" value={login?.PASSWORD || "N/D"} disabled />
       </div>
       <div class="mb-3">
-        <label for="usuRol" class="form-label fw-bold text-warning">Rol</label>
-        <input id="usuRol" type="text" class="form-control bg-dark text-light border-warning" value={login?.LOG_ROL || "N/D"} disabled />
+        <label for="usuRol" class="form-label">Rol</label>
+        <input id="usuRol" type="text" class="form-control gold-input" value={login?.LOG_ROL || "N/D"} disabled />
       </div>
       <div class="d-flex justify-content-end">
-        <a href="/app/usuarios" class="btn btn-outline-warning fw-bold">
+        <a href="/app/usuarios" class="btn btn-outline-light fw-bold">
           <i class="bi bi-arrow-left-circle-fill"></i> Volver
         </a>
       </div>
@@ -132,7 +132,10 @@
     background: var(--gris-oscuro) !important;
     min-height: 100vh;
   }
-  .dark-container {
+  .text-dorado {
+    color: var(--dorado) !important;
+  }
+  .card-form.dark-container {
     background-color: var(--gris-medio);
     color: #fff;
     border-radius: 1rem;
@@ -166,14 +169,14 @@
     color: #f0db7d99 !important;
     opacity: 1;
   }
-  .btn-outline-warning {
+  .btn-outline-light {
     border: 2px solid var(--dorado) !important;
     color: var(--dorado) !important;
     background: transparent !important;
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
   }
-  .btn-outline-warning:hover, .btn-outline-warning:focus {
+  .btn-outline-light:hover, .btn-outline-light:focus {
     background: var(--dorado) !important;
     color: #23252b !important;
   }
