@@ -122,10 +122,59 @@
 </div>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+  }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
   .dark-container {
-    background-color: #23252b;
-    color: #f0db7d;
+    background-color: var(--gris-medio);
+    color: #fff;
     border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(212,175,55,0.18);
+    max-width: 700px;
+    margin: auto;
+    padding: 2rem;
+  }
+  .form-label {
+    color: var(--dorado);
+    font-weight: 600;
+  }
+  .gold-input,
+  .form-control {
+    border: 2px solid var(--dorado) !important;
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.08rem;
+    box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gold-input:focus,
+  .form-control:focus {
+    border-color: var(--dorado-claro) !important;
+    box-shadow: 0 0 0 0.18rem var(--dorado-claro, #f0db7d55);
+    background-color: #23252b !important;
+    color: #fff !important;
+  }
+  .form-control::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+  .btn-outline-warning {
+    border: 2px solid var(--dorado) !important;
+    color: var(--dorado) !important;
+    background: transparent !important;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline-warning:hover, .btn-outline-warning:focus {
+    background: var(--dorado) !important;
+    color: #23252b !important;
   }
 </style>
