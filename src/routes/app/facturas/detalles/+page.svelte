@@ -82,7 +82,9 @@
 
 <div class="container mt-5">
   <div class="text-center mb-4">
-    <h1 class="fw-bold text-info"><i class="bi bi-receipt-cutoff"></i> Detalle de Factura</h1>
+    <h1 class="fw-bold titulo-factura text-dorado">
+      <i class="bi bi-journal-text"></i> Detalle de Factura
+    </h1>
   </div>
 
   <div class="card-factura p-4 rounded shadow-lg bg-dark text-light" style="max-width:700px; margin:auto;">
@@ -128,7 +130,7 @@
       <div class="mb-4">
         <label class="form-label" for="productosTable">Productos Comprados</label>
         <div class="table-responsive">
-          <table class="table table-dark table-bordered table-striped" id="productosTable">
+          <table class="table table-productos" id="productosTable">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -167,12 +169,19 @@
       </div>
 
       <div class="d-flex justify-content-between">
-        {#if factura.FAC_ESTADO === "PEN"}
-          <button type="button" class="btn btn-danger fw-bold" on:click={anularFactura} disabled={anulando}>
+        {#if factura.FAC_ESTADO === "PEN" || factura.FAC_ESTADO === "PAG"}
+          <button
+            type="button"
+            class="btn btn-anular fw-bold"
+            on:click={anularFactura}
+            disabled={anulando}
+          >
             <i class="bi bi-x-octagon-fill"></i> Anular Factura
           </button>
+        {:else}
+          <span></span>
         {/if}
-        <a href="/app/facturas" class="btn btn-primary fw-bold">
+        <a href="/app/facturas" class="btn btn-dorado fw-bold">
           <i class="bi bi-arrow-left-circle-fill"></i> Volver al Panel
         </a>
       </div>
@@ -181,12 +190,118 @@
 </div>
 
 <style>
-  .card-factura {
-    background-color: #23252b;
-    color: #f0db7d;
-    border-radius: 1rem;
-    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
-    margin-bottom: 2rem;
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+    --rojo: #c0392b;
   }
-  .text-info { color: #0dcaf0 !important; }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
+  .card-factura {
+    background-color: var(--gris-medio);
+    color: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 6px 24px rgba(212, 175, 55, 0.18);
+    margin-bottom: 2rem;
+    border: 3px solid var(--dorado);
+  }
+  .form-label {
+    color: var(--dorado);
+    font-weight: 600;
+  }
+  .form-control {
+    border: 2px solid var(--dorado) !important;
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.08rem;
+    box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .form-control:disabled {
+    background-color: var(--gris-medio) !important;
+    color: #fff !important;
+    opacity: 1;
+  }
+  .form-control::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+  .table {
+    border: 2px solid var(--dorado);
+    margin-bottom: 0;
+  }
+  .table th, .table td {
+    border: 2px solid var(--dorado) !important;
+    color: #fff !important;
+    background-color: var(--gris-oscuro) !important;
+    vertical-align: middle;
+  }
+  .table th {
+    color: var(--dorado);
+    font-weight: 700;
+    background-color: var(--gris-medio) !important;
+  }
+  .titulo-factura {
+    color: var(--dorado) !important;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  .table-productos {
+    background: #fff;
+    color: #23252b;
+    border: 2px solid var(--dorado);
+    margin-bottom: 0;
+  }
+  .table-productos th {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 700;
+    border: 2px solid var(--dorado) !important;
+  }
+  .table-productos td {
+    background: var(--gris-oscuro) !important;
+    color: blanchedalmond!important;
+    font-weight: 700;
+    border: 2px solid var(--dorado) !important;
+    font-size: 1.05rem;
+  }
+  .btn-dorado {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.5rem;
+    min-width: 170px;
+    box-shadow: 0 2px 8px #f0db7d33;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-dorado:hover, .btn-dorado:focus {
+    background: var(--dorado-claro);
+    color: #23252b;
+  }
+  .btn-anular {
+    background: var(--rojo);
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.5rem;
+    min-width: 170px;
+    box-shadow: 0 2px 8px #c0392b33;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-anular:hover, .btn-anular:focus {
+    background: #e74c3c;
+    color: #fff;
+  }
+  .d-flex.justify-content-between {
+    gap: 1rem;
+  }
+  .text-dorado {
+    color: var(--dorado) !important;
+  }
 </style>
