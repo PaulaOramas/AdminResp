@@ -41,7 +41,7 @@
       const prod = await resProd.json();
       nombre = prod.PROD_NOMBRE;
       descripcion = prod.PROD_DESCRIPCION;
-      precio = prod.PROD_PRECIO;
+      precio = parseFloat(prod.PROD_PRECIO).toFixed(2);
       stock = prod.PROD_STOCK;
       img = prod.PROD_IMG;
       categoria = prod.CAT_ID;
@@ -50,6 +50,13 @@
     }
     cargando = false;
   });
+
+  // Formatea el precio a dos decimales al salir del input
+  function formatearPrecio() {
+    if (!isNaN(parseFloat(precio))) {
+      precio = parseFloat(precio).toFixed(2);
+    }
+  }
 
   async function guardarCambios(e) {
     e.preventDefault();
@@ -98,7 +105,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap" rel="stylesheet" />
 </svelte:head>
 
-<div class="container mt-5">
+<div class="container mt-5 main-bg">
   <div class="text-center mb-4">
     <h1 class="fw-bold text-dorado">
       <i class="bi bi-pencil-square"></i> Editar Producto
@@ -126,7 +133,16 @@
 
         <div class="mb-3">
           <label for="ProdPrecio" class="form-label">Precio ($)</label>
-          <input id="ProdPrecio" type="number" class="form-control" bind:value={precio} required step="0.01" min="0" />
+          <input
+            id="ProdPrecio"
+            type="number"
+            class="form-control gold-input"
+            bind:value={precio}
+            required
+            step="0.01"
+            min="0"
+            on:blur={formatearPrecio}
+          />
         </div>
 
         <div class="mb-3">
@@ -163,14 +179,87 @@
 </div>
 
 <style>
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+  }
+  body, .main-bg {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
+  .container {
+    background: transparent !important;
+  }
   .card-form {
     max-width: 700px;
     margin: 3rem auto;
-    background-color: var(--gris-medio, #23252b);
+    background-color: var(--gris-medio);
     padding: 2rem;
     border-radius: 1rem;
     box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
-    color: var(--dorado-claro, #f0db7d);
+    color: var(--dorado-claro);
   }
-  .text-dorado { color: var(--dorado-claro, #f0db7d); }
+  .text-dorado {
+    color: var(--dorado);
+  }
+  .form-label {
+    color: var(--dorado);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .gold-input,
+  .form-control,
+  .form-select,
+  textarea {
+    border: 2px solid var(--dorado) !important;
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.08rem;
+    box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gold-input:focus,
+  .form-control:focus,
+  .form-select:focus,
+  textarea:focus {
+    border-color: var(--dorado-claro) !important;
+    box-shadow: 0 0 0 0.18rem var(--dorado-claro, #f0db7d55);
+    background-color: #23252b !important;
+    color: #fff !important;
+  }
+  .form-control::placeholder,
+  textarea::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+  .btn-warning {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 2px 8px #f0db7d33;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-warning:hover, .btn-warning:focus {
+    background: #ffe082;
+    color: #23252b;
+  }
+  .btn-secondary {
+    background: #23252b;
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover, .btn-secondary:focus {
+    background: var(--dorado);
+    color: #23252b;
+  }
+  .card-form .btn {
+    min-width: 170px;
+    border-radius: 0.5rem;
+  }
 </style>
