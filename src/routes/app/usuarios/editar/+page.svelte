@@ -117,41 +117,41 @@
 
 <div class="container mt-5">
   <div class="text-center mb-4">
-    <h1 class="fw-bold text-warning">
+    <h1 class="fw-bold text-dorado">
       <i class="bi bi-pencil-fill"></i> Editar Usuario
     </h1>
   </div>
 
   <form on:submit|preventDefault={guardarCambios} autocomplete="off">
-    <div class="card shadow p-4 rounded dark-container mx-auto" style="max-width:700px;">
+    <div class="card card-form dark-container shadow mx-auto">
       {#if cargando}
         <div class="alert alert-info text-center">Cargando...</div>
       {:else if error}
         <div class="alert alert-danger text-center">{error}</div>
       {:else}
         <div class="mb-3">
-          <label for="usuCiRuc" class="form-label fw-bold text-warning">Cédula / RUC</label>
-          <input id="usuCiRuc" type="text" class="form-control bg-dark text-light border-warning" value={ciRuc} disabled />
+          <label for="usuCiRuc" class="form-label">Cédula / RUC</label>
+          <input id="usuCiRuc" type="text" class="form-control gold-input" value={ciRuc} disabled />
         </div>
         <div class="mb-3">
-          <label for="usuNombre" class="form-label fw-bold text-warning">Nombre Completo</label>
-          <input id="usuNombre" type="text" class="form-control bg-dark text-light border-warning" bind:value={nombre} required />
+          <label for="usuNombre" class="form-label">Nombre Completo</label>
+          <input id="usuNombre" type="text" class="form-control gold-input" bind:value={nombre} required />
         </div>
         <div class="mb-3">
-          <label for="usuEmail" class="form-label fw-bold text-warning">Email</label>
-          <input id="usuEmail" type="email" class="form-control bg-dark text-light border-warning" bind:value={email} required />
+          <label for="usuEmail" class="form-label">Email</label>
+          <input id="usuEmail" type="email" class="form-control gold-input" bind:value={email} required />
         </div>
         <div class="mb-3">
-          <label for="usuTelefono" class="form-label fw-bold text-warning">Teléfono</label>
-          <input id="usuTelefono" type="text" class="form-control bg-dark text-light border-warning" bind:value={telefono} maxlength="15" required />
+          <label for="usuTelefono" class="form-label">Teléfono</label>
+          <input id="usuTelefono" type="text" class="form-control gold-input" bind:value={telefono} maxlength="15" required />
         </div>
         <div class="mb-3">
-          <label for="usuDireccion" class="form-label fw-bold text-warning">Dirección</label>
-          <input id="usuDireccion" type="text" class="form-control bg-dark text-light border-warning" bind:value={direccion} required />
+          <label for="usuDireccion" class="form-label">Dirección</label>
+          <input id="usuDireccion" type="text" class="form-control gold-input" bind:value={direccion} required />
         </div>
         <div class="mb-3">
-          <label for="usuCiudad" class="form-label fw-bold text-warning">Ciudad</label>
-          <select id="usuCiudad" class="form-select bg-dark text-light border-warning" bind:value={ciudad} required>
+          <label for="usuCiudad" class="form-label">Ciudad</label>
+          <select id="usuCiudad" class="form-select gold-input" bind:value={ciudad} required>
             <option value="">Seleccione una ciudad</option>
             <option value="UIO">Quito</option>
             <option value="GYE">Guayaquil</option>
@@ -159,24 +159,24 @@
           </select>
         </div>
         <div class="mb-3">
-          <label for="usuSectorEntrega" class="form-label fw-bold text-warning">Sector de Entrega</label>
-          <input id="usuSectorEntrega" type="text" class="form-control bg-dark text-light border-warning" bind:value={sector} required />
+          <label for="usuSectorEntrega" class="form-label">Sector de Entrega</label>
+          <input id="usuSectorEntrega" type="text" class="form-control gold-input" bind:value={sector} required />
         </div>
         <div class="mb-3">
-          <label for="usuRol" class="form-label fw-bold text-warning">Rol</label>
-          <select id="usuRol" class="form-select bg-dark text-light border-warning" bind:value={rol} required>
+          <label for="usuRol" class="form-label">Rol</label>
+          <select id="usuRol" class="form-select gold-input" bind:value={rol} required>
             <option value="">Seleccione un rol</option>
             <option value="CLI">Cliente</option>
             <option value="ADM">Administrador</option>
           </select>
         </div>
         <div class="mb-3">
-          <label for="usuPassword" class="form-label fw-bold text-warning">Contraseña</label>
-          <input id="usuPassword" type="password" class="form-control bg-dark text-light border-warning" bind:value={password} required />
+          <label for="usuPassword" class="form-label">Contraseña</label>
+          <input id="usuPassword" type="password" class="form-control gold-input" bind:value={password} required />
         </div>
         <div class="mb-3">
-          <label for="usuGenero" class="form-label fw-bold text-warning">Género</label>
-          <select id="usuGenero" class="form-select bg-dark text-light border-warning" bind:value={genero} required>
+          <label for="usuGenero" class="form-label">Género</label>
+          <select id="usuGenero" class="form-select gold-input" bind:value={genero} required>
             <option value="">Seleccione</option>
             <option value="M">Masculino</option>
             <option value="F">Femenino</option>
@@ -184,14 +184,14 @@
           </select>
         </div>
         <div class="mb-3">
-          <label for="usuFechaRegistro" class="form-label fw-bold text-warning">Fecha de Registro</label>
-          <input id="usuFechaRegistro" type="text" class="form-control bg-dark text-light border-warning" value={fechaRegistro} disabled />
+          <label for="usuFechaRegistro" class="form-label">Fecha de Registro</label>
+          <input id="usuFechaRegistro" type="text" class="form-control gold-input" value={fechaRegistro} disabled />
         </div>
         <div class="d-flex justify-content-between mt-3">
           <button type="submit" class="btn btn-warning fw-bold">
             <i class="bi bi-check-circle-fill"></i> Guardar Cambios
           </button>
-          <a href="/app/usuarios" class="btn btn-outline-warning fw-bold">
+          <a href="/app/usuarios" class="btn btn-outline-light fw-bold">
             <i class="bi bi-arrow-left-circle-fill"></i> Cancelar
           </a>
         </div>
@@ -201,10 +201,76 @@
 </div>
 
 <style>
-  .dark-container {
-    background-color: #23252b;
-    color: #f0db7d;
+  :root {
+    --dorado: #f0db7d;
+    --dorado-claro: #ffe082;
+    --gris-medio: #23252b;
+    --gris-oscuro: #1a1b1f;
+  }
+  :global(body) {
+    background: var(--gris-oscuro) !important;
+    min-height: 100vh;
+  }
+  .text-dorado {
+    color: var(--dorado) !important;
+  }
+  .card-form.dark-container {
+    background-color: var(--gris-medio);
+    color: #fff;
     border-radius: 1rem;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(212,175,55,0.18);
+    max-width: 700px;
+    margin: auto;
+    padding: 2rem;
+  }
+  .form-label {
+    color: var(--dorado);
+    font-weight: 600;
+  }
+  .gold-input,
+  .form-control,
+  .form-select {
+    border: 2px solid var(--dorado) !important;
+    background-color: var(--gris-oscuro) !important;
+    color: #fff !important;
+    border-radius: 0.5rem !important;
+    font-size: 1.08rem;
+    box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .gold-input:focus,
+  .form-control:focus,
+  .form-select:focus {
+    border-color: var(--dorado-claro) !important;
+    box-shadow: 0 0 0 0.18rem var(--dorado-claro, #f0db7d55);
+    background-color: #23252b !important;
+    color: #fff !important;
+  }
+  .form-control::placeholder {
+    color: #f0db7d99 !important;
+    opacity: 1;
+  }
+  .btn-warning {
+    background: var(--dorado);
+    color: #23252b;
+    font-weight: 700;
+    border: none;
+    box-shadow: 0 2px 8px #f0db7d33;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-warning:hover, .btn-warning:focus {
+    background: #ffe082;
+    color: #23252b;
+  }
+  .btn-outline-light {
+    border: 2px solid var(--dorado) !important;
+    color: var(--dorado) !important;
+    background: transparent !important;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn-outline-light:hover, .btn-outline-light:focus {
+    background: var(--dorado) !important;
+    color: #23252b !important;
   }
 </style>
