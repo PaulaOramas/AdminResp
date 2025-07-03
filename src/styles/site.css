@@ -1,7 +1,7 @@
 body {
-  background-color: #1a1b1f; /* Fondo oscuro */
+  background-color: rgb(35, 37, 43) !important; /* Fondo ploma oscuro */
   color: #f0db7d; /* Texto dorado */
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif; /* Fuente personalizada */
   margin: 0;
   padding: 0;
 }
@@ -188,7 +188,7 @@ body, html {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #23252b; /* Fondo oscuro para tablas */
+  background-color: rgb(35, 37, 43); /* Fondo ploma oscuro para tablas */
   color: #f0db7d; /* Texto dorado */
   border: 2px solid #d4af37; /* Bordes dorados */
 }
@@ -202,7 +202,7 @@ table th {
 }
 
 table td {
-  background-color: #23252b; /* Fondo oscuro para celdas */
+  background-color: rgb(35, 37, 43); /* Fondo ploma oscuro para celdas */
   color: #f0db7d; /* Texto dorado */
   padding: 10px;
   border: 2px solid #d4af37; /* Bordes dorados */

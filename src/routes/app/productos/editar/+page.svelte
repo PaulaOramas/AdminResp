@@ -182,59 +182,68 @@
   :root {
     --dorado: #f0db7d;
     --dorado-claro: #ffe082;
-    --gris-medio: #23252b;
+    --gris-medio: rgb(35, 37, 43); /* Ploma oscuro */
     --gris-oscuro: #1a1b1f;
   }
+
   body, .main-bg {
-    background: var(--gris-oscuro) !important;
+    background: var(--gris-medio) !important; /* Fondo ploma oscuro */
     min-height: 100vh;
   }
+
   .container {
     background: transparent !important;
   }
+
   .card-form {
     max-width: 700px;
     margin: 3rem auto;
-    background-color: var(--gris-medio);
+    background-color: var(--gris-medio); /* Fondo ploma oscuro para el formulario */
     padding: 2rem;
     border-radius: 1rem;
-    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.25);
-    color: var(--dorado-claro);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25); /* Sombra más oscura */
+    color: var(--dorado);
   }
+
   .text-dorado {
     color: var(--dorado);
   }
+
   .form-label {
     color: var(--dorado);
     font-weight: 600;
     letter-spacing: 0.5px;
   }
+
   .gold-input,
   .form-control,
   .form-select,
   textarea {
     border: 2px solid var(--dorado) !important;
-    background-color: var(--gris-oscuro) !important;
+    background-color: var(--gris-medio) !important; /* Fondo ploma oscuro para inputs */
     color: #fff !important;
     border-radius: 0.5rem !important;
     font-size: 1.08rem;
     box-shadow: 0 0 0 0.08rem var(--dorado-claro, #f0db7d33);
     transition: border-color 0.2s, box-shadow 0.2s;
   }
+
   .gold-input:focus,
   .form-control:focus,
   .form-select:focus,
   textarea:focus {
     border-color: var(--dorado-claro) !important;
     box-shadow: 0 0 0 0.18rem var(--dorado-claro, #f0db7d55);
-    background-color: #23252b !important;
+    background-color: var(--gris-medio) !important; /* Fondo ploma oscuro al enfocar */
     color: #fff !important;
   }
+
   .form-control::placeholder,
   textarea::placeholder {
     color: #f0db7d99 !important;
     opacity: 1;
   }
+
   .btn-warning {
     background: var(--dorado);
     color: #23252b;
@@ -243,23 +252,31 @@
     box-shadow: 0 2px 8px #f0db7d33;
     transition: background 0.2s, color 0.2s;
   }
+
   .btn-warning:hover, .btn-warning:focus {
     background: #ffe082;
     color: #23252b;
   }
+
   .btn-secondary {
-    background: #23252b;
+    background: var(--gris-medio);
     color: var(--dorado);
     border: 2px solid var(--dorado);
     font-weight: 600;
     transition: background 0.2s, color 0.2s;
   }
+
   .btn-secondary:hover, .btn-secondary:focus {
     background: var(--dorado);
     color: #23252b;
   }
+
   .card-form .btn {
     min-width: 170px;
     border-radius: 0.5rem;
+  }
+
+  .card-form .btn i {
+    margin-right: 5px;
   }
 </style>
